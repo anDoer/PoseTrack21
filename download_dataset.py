@@ -1,0 +1,98 @@
+import argparse
+import os 
+import requests
+import shutil
+import tarfile
+import zipfile
+from tqdm.auto import tqdm
+
+def download_posetrack_videos(download_path):
+    archive_path = "https://posetrack.net/posetrack18-data/posetrack18_images.tar.a"
+
+    os.makedirs(download_path, exist_ok=True)
+
+    files = [97 + i for i in range(18)]
+    for i, f in enumerate(files):
+        file_letter = chr(f)
+        file_name = f"posetrack18_images.tar.a{file_letter}" 
+        save_path = os.path.join(download_path, file_name) 
+
+        if not os.path.exists(save_path):
+            # download the file 
+            remote_url = f"{archive_path}{file_letter}" 
+            print(f"[{i} / {len(files)}]Downloading {remote_url}")
+            with requests.get(remote_url, stream=True) as r: 
+                total_length = int(r.headers.get("Content-Length"))
+
+                with tqdm.wrapattr(r.raw, "read", total=total_length, desc="") as raw:
+                    with open(save_path, "wb") as fp:
+                        shutil.copyfileobj(raw, fp)
+        else:
+            print(f"[Skip] {file_name} already exists")
+
+    print("Done")
+    print("Merging splits")
+    total_file = os.path.join(download_path, 'total.tar')
+    if not os.path.exists(total_file):
+        with open(total_file, 'wb') as fp:
+            for f in tqdm(files):
+                file_letter = chr(f) 
+                file_name = f"posetrack18_images.tar.a{file_letter}" 
+                save_path = os.path.join(download_path, file_name) 
+
+                with open(save_path, 'rb') as read:
+                    fp.write(read.read())
+
+    print("Done")
+    print("Deleting splits")
+    files = [97 + i for i in range(18)]
+    for i, f in enumerate(files):
+        file_letter = chr(f)
+        file_name = f"posetrack18_images.tar.a{file_letter}" 
+        save_path = os.path.join(download_path, file_name) 
+        os.remove(save_path)
+
+    return total_file
+
+def download_annotations(download_save_path):
+    download_path = 'https://uni-bonn.sciebo.de/s/LnqyunEJqPNa9rv/download'
+    anno_path = os.path.join(download_save_path, 'annotations.zip')
+
+    if not os.path.exists(anno_path):
+        print("Downloading annotations")
+        with requests.get(download_path, stream=True) as r:
+            total_length = int(r.headers.get("Content-Length"))
+
+            with tqdm.wrapattr(r.raw, "read", total=total_length, desc="") as raw:
+                with open(anno_path, "wb") as out:
+                    shutil.copyfileobj(raw, out)
+    else:
+        print("Annotations already downloaded")
+
+    return anno_path 
+
+def parse_args():
+    parser = argparse.ArgumentParser() 
+    parser.add_argument('--save_path', type=str, default='data/PoseTrack21')
+
+    args = parser.parse_args()
+    return args
+
+if __name__ == '__main__':
+
+    args = parse_args()
+    save_path = args.save_path
+    os.makedirs(save_path, exist_ok=True)
+
+    download_path = 'downloads'
+    archive_path = download_posetrack_videos(download_path)
+    annotation_path = download_annotations(download_path)
+    
+    print("Unpacking Dataset")
+
+    with tarfile.open(archive_path) as archive_fp:
+        archive_fp.extractall(save_path)
+
+    with zipfile.ZipFile(annotation_path, 'r') as zip_fp:
+        zip_fp.extractall(save_path)
+    
