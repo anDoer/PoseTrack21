@@ -9,6 +9,7 @@ python3 download_dataset.py --save_path /target/root/path/of/the/dataset
 
 ## Structure of the dataset 
 The dataset is organized as follows: 
+
     .
     ├── images                              # contains all images  
         ├── train
@@ -34,7 +35,7 @@ The dataset is organized as follows:
         ├── train.json
         ├── val.json
 
-A detailed description of the respective dataset formats can be found (here)[docs/dataset_structure.md]
+A detailed description of the respective dataset formats can be found [here](docs/dataset_structure.md)
 
 ## Usage 
 tbd
