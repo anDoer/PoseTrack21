@@ -29,7 +29,7 @@ The dataset is organized as follows:
 
 
 
-### Pose Reid Tracking 
+### Pose (Reid) Tracking 
 We adopt the same format proposed in PoseTrack18. A sample annotation file in `posetrack_data` has the following format:
 ```
 {
@@ -204,5 +204,5 @@ Each `gt.txt` follows the same format proposed by the MOT17 dataset, where `<x>`
 ```
 
 ###  Person Search
-`posetrack_person_search/train.json`, `posetrack_person_search/posetrack_person_search/val.json` and `posetrack_person_search/posetrack_person_search/query.json` follow a very similar structure as the annotations for [pose reid tracking](https://github.com/anDoer/PoseTrack21/edit/main/README.md#pose-reid-tracking).
+`posetrack_person_search/train.json`, `posetrack_person_search/posetrack_person_search/val.json` and `posetrack_person_search/posetrack_person_search/query.json` follow a very similar structure as the annotations for [pose reid tracking](https://github.com/anDoer/PoseTrack21//main/README.md#pose-reid-tracking).
 
