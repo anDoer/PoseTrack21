@@ -35,8 +35,9 @@ The dataset is organized as follows:
         ├── train.json
         ├── val.json
 
-A detailed description of the respective dataset formats can be found [here](docs/dataset_structure.md)
+A detailed description of the respective dataset formats can be found [here](doc/dataset_structure.md).
 
 ## Usage 
 tbd
-### Cite us here 
+## Cite us here 
+tbd
