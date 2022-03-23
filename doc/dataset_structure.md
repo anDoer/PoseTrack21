@@ -204,5 +204,5 @@ Each `gt.txt` follows the same format proposed by the MOT17 dataset, where `<x>`
 ```
 
 ###  Person Search
-`posetrack_person_search/train.json`, `posetrack_person_search/posetrack_person_search/val.json` and `posetrack_person_search/posetrack_person_search/query.json` follow a very similar structure as the annotations for [pose reid tracking](https://github.com/anDoer/PoseTrack21//main/README.md#pose-reid-tracking).
+`posetrack_person_search/train.json`, `posetrack_person_search/posetrack_person_search/val.json` and `posetrack_person_search/posetrack_person_search/query.json` follow a very similar structure as the annotations for [pose reid tracking](https://github.com/anDoer/PoseTrack21/blob/main/doc/dataset_structure.md#pose-reid-tracking).
 
