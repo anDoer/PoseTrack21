@@ -74,6 +74,7 @@ def download_annotations(download_save_path):
 def parse_args():
     parser = argparse.ArgumentParser() 
     parser.add_argument('--save_path', type=str, default='data/PoseTrack21')
+    parser.add_argument('--token',  type=str, required=True)
 
     args = parser.parse_args()
     return args
@@ -94,5 +95,5 @@ if __name__ == '__main__':
         archive_fp.extractall(save_path)
 
     with zipfile.ZipFile(annotation_path, 'r') as zip_fp:
-        zip_fp.extractall(save_path)
+        zip_fp.extractall(save_path, pwd=bytes(args.token,  'utf-8'))
     
