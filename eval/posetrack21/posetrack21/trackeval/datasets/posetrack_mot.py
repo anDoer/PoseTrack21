@@ -421,26 +421,13 @@ class PoseTrackMOT(_BaseDataset):
                                 dets_to_remove.append(det_idx)
                             
                             to_remove_tracker = np.array(dets_to_remove, dtype=np.int)
-                      
-
-                # is_distractor_class = np.isin(gt_classes[match_rows], distractor_classes)
-                # to_remove_tracker = match_cols[is_distractor_class]
-
+                  
             # Apply preprocessing to remove all unwanted tracker dets.
             data['tracker_ids'][t] = np.delete(tracker_ids, to_remove_tracker, axis=0)
             data['tracker_dets'][t] = np.delete(tracker_dets, to_remove_tracker, axis=0)
             data['tracker_confidences'][t] = np.delete(tracker_confidences, to_remove_tracker, axis=0)
             similarity_scores = np.delete(similarity_scores, to_remove_tracker, axis=1)
-
-            # Remove gt detections marked as to remove (zero marked), and also remove gt detections not in pedestrian
-            # class (not applicable for MOT15)
-            #if self.do_preproc and self.benchmark != 'MOT15':
-            #    gt_to_keep_mask = (np.not_equal(gt_zero_marked, 0)) & \
-            #                      (np.equal(gt_classes, cls_id))
-            #else:
-            #    # There are no classes for MOT15
-            #    gt_to_keep_mask = np.not_equal(gt_zero_marked, 0)
-
+            
             data['gt_ids'][t] = gt_ids
             data['gt_dets'][t] = gt_dets
             data['similarity_scores'][t] = similarity_scores
