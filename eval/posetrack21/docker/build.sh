@@ -5,7 +5,7 @@ cp Dockerfile Dockerfile.bkp
 echo "RUN adduser --disabled-password --gecos \"\" -u $UID $USERNAME"  >> Dockerfile
 echo "USER $USERNAME" >> Dockerfile
 
-###### COMMENT,  IF YOU DONT NEED AN IDEA ######
+###### COMMENT,  IF YOU DONT NEED AN IDE ######
 PATH="/opt/miniconda3/bin:$PATH"
 echo "RUN git clone https://github.com/anDoer/vim-dev.git /home/$USERNAME/vim-dev" >> Dockerfile
 echo "WORKDIR /home/$USERNAME/vim-dev" >> Dockerfile
