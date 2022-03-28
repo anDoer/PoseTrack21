@@ -25,7 +25,7 @@ We provide scripts for the evaluation for multi-object tracking, multi-person po
 
 You can also directly run the respective python files 
 ```
-python eval/scripts/run_*.py -h 
+python eval/posetrack21/scripts/run_*.py -h 
 ```
 
 To run your evaluation inside docker, run 
