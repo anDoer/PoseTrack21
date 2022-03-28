@@ -215,31 +215,6 @@ class HOTA(_BaseMetric):
 
         return res
 
-    def plot_single_tracker_results(self, table_res, tracker, cls, output_folder):
-        raise NotImplementedError("Currently not implemented")
-        """Create plot of results"""
-
-        # Only loaded when run to reduce minimum requirements
-        from matplotlib import pyplot as plt
-
-        res = table_res['COMBINED_SEQ']
-        styles_to_plot = ['r', 'b', 'g', 'b--', 'b:', 'g--', 'g:', 'm']
-        for name, style in zip(self.float_array_fields, styles_to_plot):
-            plt.plot(self.array_labels, res[name], style)
-        plt.xlabel('alpha')
-        plt.ylabel('score')
-        plt.title(tracker + ' - ' + cls)
-        plt.axis([0, 1, 0, 1])
-        legend = []
-        for name in self.float_array_fields:
-            legend += [name + ' (' + str(np.round(np.mean(res[name]), 2)) + ')']
-        plt.legend(legend, loc='lower left')
-        out_file = os.path.join(output_folder, cls + '_plot.pdf')
-        os.makedirs(os.path.dirname(out_file), exist_ok=True)
-        plt.savefig(out_file)
-        plt.savefig(out_file.replace('.pdf', '.png'))
-        plt.clf()
-
     def print_paper_summary(self, table_res, tracker, cls):
         print('')
         print("Latex Paper Summary")
