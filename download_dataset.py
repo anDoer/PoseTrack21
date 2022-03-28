@@ -54,8 +54,7 @@ def download_posetrack_videos(download_path):
 
     return total_file
 
-def download_annotations(download_save_path):
-    download_path = 'https://uni-bonn.sciebo.de/s/LnqyunEJqPNa9rv/download'
+def download_annotations(download_save_path, download_path):
     anno_path = os.path.join(download_save_path, 'annotations.zip')
 
     if not os.path.exists(anno_path):
@@ -74,6 +73,7 @@ def download_annotations(download_save_path):
 def parse_args():
     parser = argparse.ArgumentParser() 
     parser.add_argument('--save_path', type=str, default='data/PoseTrack21')
+    parser.add_argument('--download_url', type=str, default='https://uni-bonn.sciebo.de/s/k0FAaTlTEzBtRLO/download')
     parser.add_argument('--token',  type=str, required=True)
 
     args = parser.parse_args()
@@ -87,7 +87,7 @@ if __name__ == '__main__':
 
     download_path = 'downloads'
     archive_path = download_posetrack_videos(download_path)
-    annotation_path = download_annotations(download_path)
+    annotation_path = download_annotations(download_path, args.download_url)
     
     print("Unpacking Dataset")
 

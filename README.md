@@ -15,7 +15,7 @@ to work on joint approaches, that perform reasonably well
 on all three tasks.
 
 ## How to get the dataset?
-In order to obtain the entire dataset, please contact **posetrack21[at]gmail[dot]com**.
+In order to obtain the entire dataset, please contact **posetrack21[at]googlegroups[dot]com**.
 
 Afterwards, please run the following command with you access token:
 ```
