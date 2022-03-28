@@ -40,7 +40,7 @@ The dataset is organized as follows:
 A detailed description of the respective dataset formats can be found [here](doc/dataset_structure.md).
 
 ## Usage 
-tbd
+Instructions on the evaluation of the respective tacks are provided [here](eval/README.md).
 
 ## Citation 
 ```
