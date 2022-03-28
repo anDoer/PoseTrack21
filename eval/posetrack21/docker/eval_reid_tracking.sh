@@ -5,7 +5,7 @@ MOUNT_FOLDER=eval
 
 if test "$#" -lt 2; then
 	echo "#############################################################"
-	echo "# Expected min two keywords: \$gt_dir \$experiment_dir \$num_cores #"
+	echo "# Expected min two keywords: \$gt_dir \$experiment_dir #"
 	echo "#############################################################"
 	echo ""
 	exit 1
@@ -13,10 +13,8 @@ fi
 
 GT_FOLDER="$1" 
 EXP_FOLDER="$2"
-NUM_CORES="${3:-8}"
 echo $GT_FOLDER
 echo $EXP_FOLDER
-echo $NUM_CORES
 
 docker run\
 	--shm-size="2g"\
