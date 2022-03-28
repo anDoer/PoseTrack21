@@ -24,7 +24,7 @@ docker run\
 	-v "$GT_FOLDER":/home/$USERNAME/gt_data\
 	-v "$EXP_FOLDER":/home/$USERNAME/experiments\
 	--rm -it\
-	andoer/posetrack_reid_eval_daemon\
+	andoer/posetrack21_eval_kit\
 	python3 /home/$USERNAME/eval/scripts/run_posetrack_reid_challenge.py\
 		--GT_FOLDER /home/$USERNAME/gt_data\
 		--TRACKERS_FOLDER /home/$USERNAME/experiments\
