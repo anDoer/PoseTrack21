@@ -112,7 +112,6 @@ class PoseTrackReID(_BaseDataset):
 
     def _get_seq_info(self):
         sequence_files = os.listdir(self.gt_fol)
-        # sequence_files = [file for file in sequence_files if file == '009475_mpii_test.json']
         seq_lengths = dict()
 
         # reading sequence lengths
@@ -326,14 +325,6 @@ class PoseTrackReID(_BaseDataset):
             num_tracker_dets += len(data['tracker_ids'][t])
             num_gt_dets += len(data['gt_ids'][t])
 
-        # re-label ids such that there are no empty ids
-        # todo: this is potentially problematic as we want to consider global assignment over all sequences!!!!!
-        #       this has to be adapted
-        #       current solution: store original ids for later processing and evaluation
-        ###########################################################################
-        ############ this part needs to be adapted!!! otherwise, 
-        ############ global re-id does not work 
-        ###########################################################################
         if len(unique_gt_ids) > 0:
             unique_gt_ids = np.unique(unique_gt_ids)
             gt_id_map = np.nan * np.ones((np.max(unique_gt_ids) + 1))
@@ -561,9 +552,6 @@ class PoseTrackReID(_BaseDataset):
         keypoint_distances = []
         keypoint_matches = []
         for t, (gt_dets_t, tracker_dets_t, head_sizes_t) in enumerate(zip(raw_data['gt_dets'], raw_data['tracker_dets'], raw_data['head_sizes'])):
-            # ToDO: return assignment information:
-            #       match label: True/False whether det joint was matched to gt joint
-            #       det label: True/False whether a joint was detected!
 
             pckhs, distances, matches = self._calculate_p_similarities(gt_dets_t, tracker_dets_t, head_sizes_t)
             similarity_scores.append(pckhs)
