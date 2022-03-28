@@ -88,9 +88,6 @@ class PoseTrack(_BaseDataset):
                     self.tracker_list.append(f'{folder}/sequences') 
                     self.tracker_to_disp[f'{folder}/sequences'] = folder
 
-        # self.tracker_list = [folder for folder in os.listdir(self.tracker_fol) if os.path.isdir(os.path.join(self.tracker_fol, folder)) and folder == 'sequences']
-        
-
         # Get sequences to eval and check gt files exist
         self.seq_list, self.seq_lengths = self._get_seq_info()
         if len(self.seq_list) < 1:
@@ -114,7 +111,6 @@ class PoseTrack(_BaseDataset):
 
     def _get_seq_info(self):
         sequence_files = os.listdir(self.gt_fol)
-        # sequence_files = [file for file in sequence_files if file == '009475_mpii_test.json']
         seq_lengths = dict()
 
         # reading sequence lengths
@@ -329,9 +325,6 @@ class PoseTrack(_BaseDataset):
             num_gt_dets += len(data['gt_ids'][t])
 
         # Re-label IDs such that there are no empty IDs
-        # TODO: THIS IS POTENTIALLY PROBLEMATIC AS WE WANT TO CONSIDER GLOBAL ASSIGNMENT OVER ALL SEQUENCES!!!!!
-        #       THIS HAS TO BE ADAPTED
-        #       Current solution: store original ids for later processing and evaluation
         if len(unique_gt_ids) > 0:
             unique_gt_ids = np.unique(unique_gt_ids)
             gt_id_map = np.nan * np.ones((np.max(unique_gt_ids) + 1))
@@ -559,9 +552,6 @@ class PoseTrack(_BaseDataset):
         keypoint_distances = []
         keypoint_matches = []
         for t, (gt_dets_t, tracker_dets_t, head_sizes_t) in enumerate(zip(raw_data['gt_dets'], raw_data['tracker_dets'], raw_data['head_sizes'])):
-            # ToDO: return assignment information:
-            #       match label: True/False whether det joint was matched to gt joint
-            #       det label: True/False whether a joint was detected!
 
             pckhs, distances, matches = self._calculate_p_similarities(gt_dets_t, tracker_dets_t, head_sizes_t)
             similarity_scores.append(pckhs)
