@@ -30,7 +30,9 @@ The dataset is organized as follows:
 
 
 ### Pose (Reid) Tracking 
-We adopt the same format proposed in PoseTrack18. A sample annotation file in `posetrack_data` has the following format:
+We adopt the same format proposed in PoseTrack18. Please not that keypoints for `left_ear` and `right_ear` are just placeholders for compatibility with the MSCOCO dataset. 
+
+A sample annotation file in `posetrack_data` has the following format:
 ```
 {
     "images": [
@@ -173,7 +175,30 @@ We adopt the same format proposed in PoseTrack18. A sample annotation file in `p
 ```
 
 Similarly,  submission files should have the following format: 
-___to be done___
+```
+{
+    "images": [
+        {
+            "file_name": "images/train/000001_bonn_train/000000.jpg",
+            "id": 10000010000,
+            "frame_id": 10000010000
+        },
+    ],    
+    "annotations": [
+        {
+          {
+            "bbox": [x1,  y1, w, h], 
+            "image_id": 10000010000, 
+            "keypoints": [x1, y1, vis1, ..., x17, y17, vis17], 
+            "scores": [s1, ..., s17],
+            "person_id": 1024, 
+            "track_id": 0
+        }
+        }
+    ]
+}
+```
+Note, that the `vis1` to `vis17` are ignored during evaluation.
 
 ### Multi-Object Tracking 
 In MOT,  we provide a slightly different format,  compared to related MOT datasets such as MOT17. In particular,  we replace `seqinfo.ini` by `image_info.json` with the following format:
