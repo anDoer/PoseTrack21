@@ -73,7 +73,7 @@ def download_annotations(download_save_path, download_path):
 def parse_args():
     parser = argparse.ArgumentParser() 
     parser.add_argument('--save_path', type=str, default='data/PoseTrack21')
-    parser.add_argument('--download_url', type=str, default='https://uni-bonn.sciebo.de/s/k0FAaTlTEzBtRLO/download')
+    parser.add_argument('--download_url', type=str, default='https://github.com/anDoer/PoseTrack21/releases/download/v0.1/posetrack21_annotations.zip')
     parser.add_argument('--token',  type=str, required=True)
 
     args = parser.parse_args()
