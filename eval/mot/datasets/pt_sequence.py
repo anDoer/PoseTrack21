@@ -4,17 +4,11 @@ import os
 import os.path as osp
 
 import numpy as np
-#import torch
 from PIL import Image
-#from torch.utils.data import Dataset
 
-#import cv2
 import json
 
-#from torchvision.transforms import ToTensor
 from shapely.geometry import box, Polygon, MultiPolygon
-
-
 
 def ignore_regions():
     # remove boxes from in ignore regions
@@ -124,25 +118,14 @@ def ignore_regions():
 
 class PTSequence():
     """Multiple Object Tracking Dataset.
-
-    This dataloader is designed so that it can handle only one sequence, if more have to be
-    handled one should inherit from this class.
     """
-
     def __init__(self, seq_name, mot_dir, dataset_path, vis_threshold=0.0):
-        """
-        Args:
-            seq_name (string): Sequence to take
-            vis_threshold (float): Threshold of visibility of persons above which they are selected
-        """
         self._seq_name = seq_name
         self._vis_threshold = vis_threshold
 
         self._mot_dir = mot_dir
         self.dataset_path = dataset_path
         self._folders = os.listdir(self._mot_dir)
-
-        #self.transforms = ToTensor()
 
         if seq_name is not None:
             assert seq_name in self._folders, \
@@ -160,7 +143,6 @@ class PTSequence():
         """Return the ith image converted to blob"""
         data = self.data[idx]
         img = Image.open(data['im_path']).convert("RGB")
-        #img = self.transforms(img)
         img = np.asarray(img)
 
         sample = {}
