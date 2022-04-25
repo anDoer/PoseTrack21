@@ -213,7 +213,7 @@ class HOTAReidKeypoints(_BaseMetric):
 
         # Calculate global! association scores (AssA, AssRe, AssPr) for the alpha value.
         # First calculate scores per gt_id/tracker_id combo and then average over the number of detections.
-        for a, alpha in enumerate(tqmd(self.array_labels)):
+        for a, alpha in enumerate(tqdm(self.array_labels)):
             matches_count = matches_counts[a]
             '''
             ass_a in the code is A(c) in the equation of the paper.
@@ -328,6 +328,8 @@ class HOTAReidKeypoints(_BaseMetric):
         metric_name = self.get_name()
         self._row_print([metric_name + '->evaluating: ' + tracker + ':'])
         seq_names = list(table_res.keys())
+
+        # ToDO: potential removal candidate
         metric_names = list(table_res[seq_names[0]].keys())
         self._row_print(['Sequence'] + metric_names, space=15)
         for seq, results in sorted(table_res.items()):
@@ -404,7 +406,7 @@ class HOTAReidKeypoints(_BaseMetric):
 
     @staticmethod
     def _row_print_latex(*argv):
-        to_print = HOTAReidKeypoint._row_to_latex(*argv)
+        to_print = HOTAReidKeypoints._row_to_latex(*argv)
         print(to_print)
 
     @staticmethod
