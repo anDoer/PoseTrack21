@@ -29,7 +29,7 @@ The dataset is organized as follows:
 
 
 
-### Pose (Reid) Tracking 
+### Reid Pose Tracking 
 We adopt the same format proposed in PoseTrack18. Please not that keypoints for `left_ear` and `right_ear` are just placeholders for compatibility with the MSCOCO dataset. 
 
 A sample annotation file in `posetrack_data` has the following format:
