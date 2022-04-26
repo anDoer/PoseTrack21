@@ -327,24 +327,19 @@ class PoseTrackReID(_BaseDataset):
 
         if len(unique_gt_ids) > 0:
             unique_gt_ids = np.unique(unique_gt_ids)
-            gt_id_map = np.nan * np.ones((np.max(unique_gt_ids) + 1))
-            gt_id_map[unique_gt_ids] = np.arange(len(unique_gt_ids))
             for t in range(raw_data['num_timesteps']):
                 if len(data['gt_ids'][t]) > 0:
                     data['original_gt_ids'][t] = data['gt_ids'][t].copy()
-                    data['gt_ids'][t] = gt_id_map[data['gt_ids'][t]].astype(int)
 
                     gt_dets = data['gt_dets'][t]
                     num_gt_joints += count_valid_joints(gt_dets)
 
         if len(unique_tracker_ids) > 0:
             unique_tracker_ids = np.unique(unique_tracker_ids)
-            tracker_id_map = np.nan * np.ones((np.max(unique_tracker_ids) + 1))
-            tracker_id_map[unique_tracker_ids] = np.arange(len(unique_tracker_ids))
             for t in range(raw_data['num_timesteps']):
                 if len(data['tracker_ids'][t]) > 0:
                     data['original_tracker_ids'][t] = data['tracker_ids'][t].copy()
-                    data['tracker_ids'][t] = tracker_id_map[data['tracker_ids'][t]].astype(int)
+
                     tracker_dets = data['tracker_dets'][t]
                     num_tracker_joints += count_valid_joints(tracker_dets)
 

@@ -48,6 +48,7 @@ class HOTAReidKeypoints(_BaseMetric):
         # Global Definitions #
         ######################
         
+        num_sequences = len(processed_seqs)
         # Initialise gloab results
         res = {}
         for field in self.float_array_fields + self.integer_array_fields:
@@ -55,7 +56,7 @@ class HOTAReidKeypoints(_BaseMetric):
         for field in self.float_fields:
             res[field] = 0
         for field in self.integer_fields:
-            res[field] = np.zeros(self.n_joints, dtype=int)
+            res[field] = np.zeros([self.n_joints], dtype=int)
 
         # First, we initialize global vairiables
         num_gt_ids = len(global_gt_ids)
@@ -154,7 +155,7 @@ class HOTAReidKeypoints(_BaseMetric):
                 for j in range(self.n_joints):
                     # Calculate and accumulate basic statistics
                     for a, alpha in enumerate(self.array_labels):
-                        # To the matching! We priortize TP over accuracy 
+                        # Do the matching! We priortize TP over accuracy 
                         ms = ((similarity[:, :, j] >= alpha) / EPS).astype(float) 
                         ms += similarity[:, :, j]
                         
