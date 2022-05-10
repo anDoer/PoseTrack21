@@ -48,7 +48,7 @@ Instructions on the evaluation of the respective tacks are provided [here](eval/
 If you are using our dataset for your research, please cite our paper.
 ```
 @inproceedings{doering22,
-  title={PoseTrack21: A Dataset for Person Search, Multi-Object Tracking and Multi-Person Pose Tracking},
+  title={Pose{T}rack21: {A} Dataset for Person Search, Multi-Object Tracking and Multi-Person Pose Tracking},
   author={Andreas Doering and Di Chen and Shanshan Zhang and Bernt Schiele and Juergen Gall},
   booktitle={CVPR},
   year={2022}
