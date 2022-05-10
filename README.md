@@ -4,7 +4,7 @@ Current research evaluates person search, multi-object tracking and multi-person
 ## How to get the dataset?
 In order to obtain the entire dataset, please fill out [this document](https://docs.google.com/document/d/1unxTYm2nVH1Qr7iYtgFzkzPbu042c1MLyZUP8Nb7-Fs/edit?usp=sharing) and send it to **posetrack21[at]googlegroups[dot]com**.
 
-**NOTE: Due to technical issues, we might not have received your request. In case you did not get your access token by now, please contact us again.**
+**NOTE: Due to technical issues, we might not have received your request. In case you did not get your access token by now, please contact us again or create an issue in this repository.**
 
 Afterwards, please run the following command with you access token:
 ```
