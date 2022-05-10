@@ -21,7 +21,7 @@ def download_posetrack_videos(download_path):
             # download the file 
             remote_url = f"{archive_path}{file_letter}" 
             print(f"[{i} / {len(files)}]Downloading {remote_url}")
-            with requests.get(remote_url, stream=True) as r: 
+            with requests.get(remote_url, stream=True, verify=False) as r: 
                 total_length = int(r.headers.get("Content-Length"))
 
                 with tqdm.wrapattr(r.raw, "read", total=total_length, desc="") as raw:
