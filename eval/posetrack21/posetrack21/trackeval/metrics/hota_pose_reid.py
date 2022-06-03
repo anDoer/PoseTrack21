@@ -84,7 +84,7 @@ class HOTAReidKeypoints(_BaseMetric):
         for seq_idx, (seq_name, seq_data) in enumerate(processed_seqs.items()): 
             if seq_data['num_tracker_dets'] == 0:
                 res['HOTA_FN'] += seq_data['num_gt_joints'][None, :] * np.ones((len(self.array_labels), self.n_joints), dtype=float)
-                res['LocA'] += np.ones((len(self.array_labels)), dtype=float)
+                res['LocA'] += np.ones((len(self.array_labels), self.n_joints), dtype=float)
                 res['LocA(0)'] += np.ones((self.n_joints), dtype=float)
                 continue # go to next sequence 
             
