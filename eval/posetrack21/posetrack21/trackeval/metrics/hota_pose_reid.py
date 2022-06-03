@@ -1,7 +1,6 @@
 
 import os
 import numpy as np
-import sparse
 from scipy.optimize import linear_sum_assignment
 from ._base_metric import _BaseMetric
 from .. import _timing
