@@ -1,6 +1,6 @@
 ## I get an error when running `download_dataset.py`, what can I do? 
 
-Our script downloads the video data from `posetrack.net`, which is not maintained by us. Unfortunately, the SSL-certificate is expiered and for some users this results in an error.
+Our script downloads the video data from `posetrack.net`, which is **not** maintained by us. Unfortunately, the SSL-certificate is expiered and for some users this results in an error.
 
 Alternatively, you can try to download the video data with the following script, which ignores an outdated SSL-certificate
 ```
