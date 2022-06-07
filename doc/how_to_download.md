@@ -11,4 +11,4 @@ done;
 ```
 Once you downloaded the files, move them into your download folder, uncomment lines `14-31` in `download_dataset.py` and re-run the script.
 
-If you are still not able to download the data, don't hesitate to contact use as `posetrack21[at]googlegroups.com` and we will help you getting the data.
+If you are still not able to download the data, don't hesitate to contact use at `posetrack21[at]googlegroups.com` and we will help you getting the data.
