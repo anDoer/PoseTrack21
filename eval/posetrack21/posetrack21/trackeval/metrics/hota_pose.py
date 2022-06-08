@@ -51,19 +51,24 @@ class HOTAeypoints(_BaseMetric):
         for field in self.integer_fields:
             res[field] = np.zeros(self.n_joints, dtype=int)
 
+        assert res['HOTA_TP'].shape[1] == 15 
         # Return result quickly if tracker or gt sequence is empty
         if data['num_tracker_dets'] == 0:
             res['HOTA_FN'] = data['num_gt_joints'][None, :] * np.ones((len(self.array_labels), self.n_joints), dtype=np.float)
             res['LocA'] = np.ones((len(self.array_labels), self.n_joints), dtype=np.float)
             res['LocA(0)'] = np.ones((self.n_joints), dtype=np.float)
+            res = self._compute_final_fields(res, compute_avg=True)
+
             return res
 
         if data['num_gt_dets'] == 0:
             res['HOTA_FP'] = data['num_tracker_joints'][None, :] * np.ones((len(self.array_labels), self.n_joints), dtype=np.float)
             res['LocA'] = np.ones((len(self.array_labels), self.n_joints), dtype=np.float)
             res['LocA(0)'] = np.ones((self.n_joints), dtype=np.float)
+            res = self._compute_final_fields(res, compute_avg=True)
             return res
         
+
         # Variables counting global association
         potential_matches_count = np.zeros((data['num_gt_ids'], data['num_tracker_ids'], self.n_joints))
         gt_id_count = np.zeros((data['num_gt_ids'], 1, self.n_joints))
@@ -195,6 +200,7 @@ class HOTAeypoints(_BaseMetric):
         # Calculate final scores
         res['LocA'] = np.maximum(1e-10, res['LocA']) / np.maximum(1e-10, res['HOTA_TP'])
         res = self._compute_final_fields(res, compute_avg=True)
+
         return res
 
     def _compute_final_fields(self, res, compute_avg):
@@ -220,7 +226,6 @@ class HOTAeypoints(_BaseMetric):
         # calculate overall average!
         if compute_avg:
             for k, v in res.items():
-
                 if k in self.float_array_fields:
                     if isinstance(v, np.ndarray):
                         avg = np.mean(v, axis=1, keepdims=True)
@@ -231,6 +236,7 @@ class HOTAeypoints(_BaseMetric):
                     res[k] = np.append(v, np.mean(v, keepdims=True), axis=0)
                 if k in self.integer_fields:
                     res[k] = np.append(v, np.sum(v, axis=0, keepdims=True), axis=0)
+
         return res
 
     def combine_sequences(self, all_res):

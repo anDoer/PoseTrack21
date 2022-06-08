@@ -86,12 +86,14 @@ class HOTAReidKeypoints(_BaseMetric):
                 res['HOTA_FN'] += seq_data['num_gt_joints'][None, :] * np.ones((len(self.array_labels), self.n_joints), dtype=float)
                 res['LocA'] += np.ones((len(self.array_labels), self.n_joints), dtype=float)
                 res['LocA(0)'] += np.ones((self.n_joints), dtype=float)
+                res = self._compute_final_fields(res, compute_avg=True)
                 continue # go to next sequence 
             
             if seq_data['num_gt_dets'] == 0:
                 res['HOTA_FP'] += seq_data['num_tracker_joints'][None, :] * np.ones((len(self.array_labels), self.n_joints), dtype=float)
                 res['LocA'] += np.ones((len(self.array_labels), self.n_joints), dtype=float)
                 res['LocA(0)'] += np.ones((self.n_joints), dtype=float)
+                res = self._compute_final_fields(res, compute_avg=True)
                 continue # go to next sequence 
             
             seq_data['keypoint_similarity'] = list()
@@ -277,7 +279,6 @@ class HOTAReidKeypoints(_BaseMetric):
         # calculate overall average!
         if compute_avg:
             for k, v in res.items():
-
                 if k in self.float_array_fields:
                     if isinstance(v, np.ndarray):
                         avg = np.mean(v, axis=1, keepdims=True)

@@ -154,7 +154,6 @@ class PoseEvaluator:
 
 @_timing.time
 def eval_sequence(seq, dataset, tracker, class_list, metrics_list, metric_names):
-    # import pdb; pdb.set_trace()
     """Function for evaluating a single sequence"""
     raw_data = dataset.get_raw_seq_data(tracker, seq)
     seq_res = {}
