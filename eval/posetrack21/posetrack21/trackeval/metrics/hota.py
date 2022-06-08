@@ -37,11 +37,13 @@ class HOTA(_BaseMetric):
             res['HOTA_FN'] = data['num_gt_dets'] * np.ones((len(self.array_labels)), dtype=np.float)
             res['LocA'] = np.ones((len(self.array_labels)), dtype=np.float)
             res['LocA(0)'] = 1.0
+            res = self._compute_final_fields(res)
             return res
         if data['num_gt_dets'] == 0:
             res['HOTA_FP'] = data['num_tracker_dets'] * np.ones((len(self.array_labels)), dtype=np.float)
             res['LocA'] = np.ones((len(self.array_labels)), dtype=np.float)
             res['LocA(0)'] = 1.0
+            res = self._compute_final_fields(res)
             return res
 
         # Variables counting global association
