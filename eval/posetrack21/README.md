@@ -32,3 +32,15 @@ To run your evaluation inside docker, run
 ```
 eval/posetrack21/docker/eval_.sh $GT_FOLDER $EXP_FOLDER $NUM_CPU_CORES
 ```
+
+___
+The PoseTrack21 evaluation code build upon
+
+```
+@misc{luiten2020trackeval,
+  author =       {Jonathon Luiten, Arne Hoffhues},
+  title =        {TrackEval},
+  howpublished = {\url{https://github.com/JonathonLuiten/TrackEval}},
+  year =         {2020}
+}
+```
