@@ -123,7 +123,14 @@ def correspondence_boxes(corr_ckpt_path,
     model = DataParallel(poseNet)
     checkpoint = torch.load(corr_ckpt_path)
     pretrained_dict = checkpoint['state_dict']
-    model.load_state_dict(pretrained_dict)
+    model_state_dict = model.state_dict()
+    for k_ckpt, v in pretrained_dict.items():
+        new_k = k_ckpt
+        if 'module.model.module' in k_ckpt:
+            new_k = f"{k_ckpt[:13]}{k_ckpt[20:]}"
+
+        model_state_dict[new_k] = v
+    model.load_state_dict(model_state_dict)
     model.cuda()
     model.eval()
 

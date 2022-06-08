@@ -40,11 +40,20 @@ class Siamese(nn.Module):
 
         self.res = res
         self.model = LocalCorr()
-        self.model = DataParallel(self.model)
+        #self.model = DataParallel(self.model)
         if local_ckpt is not None:
+            import pdb; pdb.set_trace()
             checkpoint = torch.load(local_ckpt)
             pretrained_dict = checkpoint['state_dict']
-            self.model.load_state_dict(pretrained_dict)
+            state_dict = self.model.state_dict()
+
+            for k, v in pretrained_dict.items():
+                newk = k
+                if 'module.' in k:
+                    newk = k[7:]
+                state_dict[newk] = v
+        
+            self.model.load_state_dict(state_dict)
             for param in self.model.parameters():
                 param.requires_grad = False
         self.pd = Refiner(64 + 17, 17)

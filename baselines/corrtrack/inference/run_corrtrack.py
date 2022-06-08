@@ -192,7 +192,14 @@ def track_with_correspondences(ckpt_path,
     model.cuda()
     checkpoint = torch.load(ckpt_path)
     pretrained_dict = checkpoint['state_dict']
-    model.load_state_dict(pretrained_dict)
+    model_state_dict = model.state_dict()
+    for k_ckpt, v in pretrained_dict.items():
+        new_k = k_ckpt
+        if 'module.model.module' in k_ckpt:
+            new_k = f"{k_ckpt[:13]}{k_ckpt[20:]}"
+
+        model_state_dict[new_k] = v
+    model.load_state_dict(model_state_dict)
 
     sequences = os.listdir(sequences_path)
     total_sequences = len(sequences)
