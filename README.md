@@ -4,6 +4,8 @@ Current research evaluates person search, multi-object tracking and multi-person
 ## How to get the dataset?
 In order to obtain the entire dataset, please fill out [this document](https://docs.google.com/document/d/1unxTYm2nVH1Qr7iYtgFzkzPbu042c1MLyZUP8Nb7-Fs/edit?usp=sharing) and send it to **posetrack21[at]googlegroups[dot]com**.
 
+**NOTE**: Please don't request write access to the template of the agreement sheet. Download the agreement sheet and fill it locally on your computer and send it to us.
+
 Afterwards, please run the following command with you access token:
 ```
 python3 download_dataset.py --save_path /target/root/path/of/the/dataset --token [your token]
