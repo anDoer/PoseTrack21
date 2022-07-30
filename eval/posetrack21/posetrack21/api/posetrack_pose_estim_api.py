@@ -23,7 +23,7 @@ class PoseTrackPoseEvaluator(BaseEvaluator):
         self.dataset_list = [trackeval.datasets.PoseTrack(dataset_config)]
         self.metrics_list = list() 
 
-        for metric in [trackeval.metrics.HOTAeypoints]:
+        for metric in [trackeval.metrics.map]:
             if metric.get_name() in metrics_config['METRICS']:
                 self.metrics_list.append(metric()) 
         if len(self.metrics_list) == 0:
