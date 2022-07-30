@@ -12,6 +12,7 @@ docker run\
 	-v "$SRC_DIR":/home/$USERNAME/$MOUNT_FOLDER\
 	-v "$WORK":/home/group-cvg/\
 	-v "$DATASET":/home/group-cvg/datasets\
+    -p 8080:8080\
 	--rm -it\
     andoer/posetrack21_eval_kit \
 	/bin/bash
