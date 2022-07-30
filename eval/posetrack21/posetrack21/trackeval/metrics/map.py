@@ -38,6 +38,11 @@ class PosemAP(_BaseMetric):
         self.fields = self.float_array_fields + self.integer_array_fields + self.float_fields + self.integer_fields
         self.summary_fields = self.float_array_fields + self.float_fields
 
+
+    @classmethod
+    def get_name(cls):
+        return cls.__name__
+
     @_timing.time
     def eval_sequence(self, data):
         """Calculates the HOTA metrics for one sequence"""
