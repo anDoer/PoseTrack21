@@ -5,6 +5,9 @@ import shutil
 import tarfile
 import zipfile
 from tqdm.auto import tqdm
+from requests.packages.urllib3.exceptions import InsecureRequestWarning
+
+requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 
 def download_posetrack_videos(download_path):
     archive_path = "https://posetrack.net/posetrack18-data/posetrack18_images.tar.a"
