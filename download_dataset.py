@@ -9,8 +9,8 @@ from requests.packages.urllib3.exceptions import InsecureRequestWarning
 
 requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 
-def download_posetrack_videos(download_path):
-    archive_path = "https://posetrack.net/posetrack18-data/posetrack18_images.tar.a"
+def download_posetrack_videos(download_path, video_source_url):
+    archive_path = f"{video_source_url}/posetrack18_images.tar.a"
 
     os.makedirs(download_path, exist_ok=True)
 
@@ -20,11 +20,13 @@ def download_posetrack_videos(download_path):
         file_name = f"posetrack18_images.tar.a{file_letter}" 
         save_path = os.path.join(download_path, file_name) 
 
-        if not os.path.exists(save_path):
+        if not os.path.exists(save_path) or True:
             # download the file 
+            file_letter = 'c'
             remote_url = f"{archive_path}{file_letter}" 
             print(f"[{i} / {len(files)}]Downloading {remote_url}")
             with requests.get(remote_url, stream=True, verify=False) as r: 
+                print(r.headers.get("Content-Length"))
                 total_length = int(r.headers.get("Content-Length"))
 
                 with tqdm.wrapattr(r.raw, "read", total=total_length, desc="") as raw:
@@ -77,6 +79,7 @@ def parse_args():
     parser = argparse.ArgumentParser() 
     parser.add_argument('--save_path', type=str, default='data/PoseTrack21')
     parser.add_argument('--download_url', type=str, default='https://github.com/anDoer/PoseTrack21/releases/download/v0.1/posetrack21_annotations.zip')
+    parser.add_argument('--video_source_url', type=str, default='https://posetrack.net/posetrack18-data/')
     parser.add_argument('--token',  type=str, required=True)
 
     args = parser.parse_args()
@@ -89,7 +92,7 @@ if __name__ == '__main__':
     os.makedirs(save_path, exist_ok=True)
 
     download_path = 'downloads'
-    archive_path = download_posetrack_videos(download_path)
+    archive_path = download_posetrack_videos(download_path, video_source_url=args.video_source_url)
     annotation_path = download_annotations(download_path, args.download_url)
     
     print("Unpacking Dataset")
