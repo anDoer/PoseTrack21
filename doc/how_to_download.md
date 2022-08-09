@@ -13,4 +13,12 @@ Once you downloaded the files, move them into your download folder, uncomment li
 
 If you are still not able to download the data, don't hesitate to contact use at `posetrack21[at]googlegroups.com` and we will help you getting the data.
 
-**NOTE**: For unknown reasons, `posetrack.net` is **offline** and the dataset can not be downloaded :frowning_face: . We already contacted the posetrack.net team. If you have not downloaded the video data yet, please contact us and we will provide to you an alternative download link. For legal reasons, we can not share the alternative download link publicly.
+### `posetrack.net` is offline! 
+For unknown reasons, `posetrack.net` is **offline** and the dataset can not be downloaded :frowning_face: . We already contacted the [posetrack.net team](mailto:admin@posetrack.net). If you have not downloaded the video data yet, please contact us and we will provide to you an alternative download link. For legal reasons, we can not share the alternative download link publicly.
+
+Please run the following command with the alternative video source to obtain the dataset
+
+```
+python3 download_dataset.py --save_path /target/root/path/of/the/dataset --token [your token] --video_source_url="[NEW URL]"
+```
+
