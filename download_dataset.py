@@ -22,7 +22,6 @@ def download_posetrack_videos(download_path, video_source_url):
 
         if not os.path.exists(save_path) or True:
             # download the file 
-            file_letter = 'c'
             remote_url = f"{archive_path}{file_letter}" 
             print(f"[{i} / {len(files)}]Downloading {remote_url}")
             with requests.get(remote_url, stream=True, verify=False) as r: 
