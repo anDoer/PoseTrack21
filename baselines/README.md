@@ -1,3 +1,7 @@
+# Baselines
+You can find the respective scripts to run the baselines in `baselines/scripts/posetracking/`. Each script contains pre-defined paths to the respective model weights and person detections. 
+
+Please download the [required weights and detections](https://github.com/anDoer/PoseTrack21/releases/download/v0.2/PoseTrack21Release.zip) and place the folders `data` and `outputs` `into PoseTrack21/baselines`.
 
 # Leader Board 
 You can request to include your results into this leader board by generating a pull request! 
@@ -9,7 +13,7 @@ We show the results of two protocols:
 
 *Note that results can vary between protocols (i.e. DetA) as in protocol 1, metrics are calculated for each sequence individually and then averaged, where as in protocol 2, metrics are calculated for the entire valdation set.*
 
-## Protocol 1: Multi-Person Re-ID Pose Tracking
+### Protocol 1: Multi-Person Re-ID Pose Tracking
 | Method                 | DetA          | AssA          | FragA         | HOTA          | FA-HOTA       | 
 | ------------------     | ------------- | ------------- | ------------- | ------------- | ------------- |
 | CorrTrack [1]          | 45.48         | 58.02         | 57.75         | 51.13         | 51.07         |
@@ -19,7 +23,7 @@ We show the results of two protocols:
 
 We will release the code soon.
 
-## Protocol 2: Multi-Person Re-ID Pose Tracking with lookup table
+### Protocol 2: Multi-Person Re-ID Pose Tracking with lookup table
 
 | Method                  | DetA          | AssA          | FragA         | HOTA          | FA-HOTA       | 
 | ------------------      | ------------- | ------------- | ------------- | ------------- | ------------- |
