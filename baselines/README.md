@@ -21,8 +21,6 @@ We show the results of two protocols:
 | Tracktor w. Pose [1]   | 46.30         | 59.41         | 58.61         | 52.21         | 52.03         |
 | Tracktor w. Corr [1]   | 44.67         | 54.05         | 54.05         | 48.90         | 48.43         |
 
-We will release the code soon.
-
 ### Protocol 2: Multi-Person Re-ID Pose Tracking with lookup table
 
 | Method                  | DetA          | AssA          | FragA         | HOTA          | FA-HOTA       | 
