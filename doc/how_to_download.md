@@ -11,7 +11,7 @@ done;
 ```
 Once you downloaded the files, move them into your download folder, uncomment lines `14-31` in `download_dataset.py` and re-run the script.
 
-If you are still not able to download the data, don't hesitate to contact us at `posetrack21@googlegroups.com` and we will help you get the data.
+If you are still not able to download the data, don't hesitate to contact us at `posetrack21[at]googlegroups[dot]com` and we will help you get the data.
 
 ### `posetrack.net` is offline! 
 For unknown reasons, `posetrack.net` is **offline** and the dataset can not be downloaded :frowning_face: . We already contacted the [posetrack.net team](mailto:admin@posetrack.net). If you have not downloaded the video data yet, please contact us and we will provide to you an alternative download link. For legal reasons, we can not share the alternative download link publicly.
