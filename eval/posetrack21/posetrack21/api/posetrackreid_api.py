@@ -3,7 +3,7 @@ from posetrack21.api.base_api import BaseEvaluator
 
 
 class PoseTrackReIDEvaluator(BaseEvaluator):
-    def __init__(self, trackers_folder, gt_folder):
+    def __init__(self, trackers_folder, gt_folder, **kwargs):
         self.metric = 'HOTAReidKeypoints'
         self.dataset = 'PoseTrackReID'
         
@@ -12,7 +12,7 @@ class PoseTrackReIDEvaluator(BaseEvaluator):
         default_metrics_config = {'METRICS': [f'{self.metric}']}
 
         config = {**default_eval_config, **default_dataset_config, **default_metrics_config}
-        super().__init__(config, trackers_folder, gt_folder, use_parallel=False, num_parallel_cores=0)
+        super().__init__(config, trackers_folder, gt_folder, use_parallel=False, num_parallel_cores=0, **kwargs)
 
         # split config dict 
         eval_config = {k: v for k, v in config.items() if k in default_eval_config.keys()}

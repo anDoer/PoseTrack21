@@ -1,9 +1,13 @@
 
 class BaseEvaluator:
 
-    def __init__(self, config, trackers_folder, gt_folder, use_parallel, num_parallel_cores):
+    def __init__(self, config, trackers_folder, gt_folder, use_parallel, num_parallel_cores, **kwargs):
         
         self.setup_config(config, trackers_folder, gt_folder, use_parallel, num_parallel_cores)
+
+        for k, v in kwargs.items():
+            if k in config:
+                config[k] = v
 
     def setup_config(self, config, trackers_folder, gt_folder, use_parallel, num_parallel_cores):
 

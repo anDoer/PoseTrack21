@@ -22,6 +22,9 @@ class Count(_BaseMetric):
                'Frames': data['num_timesteps']}
         return res
 
+    def print_table_detailed(self, table_res, tracker, cls):
+        pass 
+
     def combine_sequences(self, all_res):
         """Combines metrics across all sequences"""
         res = {}

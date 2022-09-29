@@ -20,6 +20,9 @@ class HOTA(_BaseMetric):
         self.float_fields = ['HOTA(0)', 'LocA(0)', 'HOTALocA(0)']
         self.fields = self.float_array_fields + self.integer_array_fields + self.float_fields + self.integer_fields
         self.summary_fields = self.float_array_fields + self.float_fields
+    
+    def print_table_detailed(self, table_res, tracker, cls):
+        pass
 
     @_timing.time
     def eval_sequence(self, data):
