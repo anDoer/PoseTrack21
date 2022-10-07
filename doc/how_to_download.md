@@ -6,7 +6,7 @@ For unknown reasons, `posetrack.net` is **offline** and the dataset can not be d
 Please run the following command with the `alternative video source` to obtain the dataset
 
 ```
-python3 download_dataset.py --save_path /target/root/path/of/the/dataset --token [your token] --video_source_url="[NEW URL]"
+python3 download_dataset.py --save_path /target/root/path/of/the/dataset --token="[your token]" --video_source_url="[NEW URL]"
 ```
 
 ### Alternative download options (outdated as `posetrack.net` is offline)
