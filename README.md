@@ -8,7 +8,7 @@ In order to obtain the entire dataset, please fill out [this document](https://d
 
 Afterwards, please run the following command with you access token:
 ```
-python3 download_dataset.py --save_path /target/root/path/of/the/dataset --token [your token]
+python3 download_dataset.py --save_path /target/root/path/of/the/dataset --token="[your token]"
 ```
 
 **!!NOTE!!**: If you are having problems downloading the dataset, please follow [these instructions](https://github.com/anDoer/PoseTrack21/blob/main/doc/how_to_download.md).
