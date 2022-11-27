@@ -97,7 +97,26 @@ if __name__ == '__main__':
     print("Unpacking Dataset")
 
     with tarfile.open(archive_path) as archive_fp:
-        archive_fp.extractall(save_path)
+        def is_within_directory(directory, target):
+        	
+        	abs_directory = os.path.abspath(directory)
+        	abs_target = os.path.abspath(target)
+        
+        	prefix = os.path.commonprefix([abs_directory, abs_target])
+        	
+        	return prefix == abs_directory
+        
+        def safe_extract(tar, path=".", members=None, *, numeric_owner=False):
+        
+        	for member in tar.getmembers():
+        		member_path = os.path.join(path, member.name)
+        		if not is_within_directory(path, member_path):
+        			raise Exception("Attempted Path Traversal in Tar File")
+        
+        	tar.extractall(path, members, numeric_owner=numeric_owner) 
+        	
+        
+        safe_extract(archive_fp, save_path)
 
     with zipfile.ZipFile(annotation_path, 'r') as zip_fp:
         zip_fp.extractall(save_path, pwd=bytes(args.token,  'utf-8'))
