@@ -126,8 +126,6 @@ class SeqNet(nn.Module):
                 detections, images.image_sizes, original_image_sizes
             )
 
-            # ToDO: check for detections inside ignore regions 
-            
             return detections
 
     def forward(self, images, targets=None, query_img_as_gallery=False):

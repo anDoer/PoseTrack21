@@ -240,28 +240,3 @@ def evaluate_performance(model, gallery_loader, query_loader, device, use_gt=Fal
     return ret
 
 
-@torch.no_grad()
-def visualize_detections(model, gallery_loader, device, use_cache=False, cache_file_name='eval_cache_use_gt_False.pth',
-                         save_path='data/vis/'):
-    """
-    Args:
-        use_cache (bool, optional): Whether to use the cached features. Defaults to False.
-    """
-    os.makedirs(save_path, exist_ok=True)
-    model.eval()
-    cache_file = f"data/eval_cache/{cache_file_name}"
-    if use_cache and os.path.isfile(cache_file):
-        eval_cache = torch.load(cache_file)
-        gallery_dets = eval_cache["gallery_dets"]
-    else:
-        gallery_dets = []
-        for images, targets in tqdm(gallery_loader, ncols=0):
-            images, targets = to_device(images, targets, device)
-            outputs = model(images)
-
-            for output in outputs:
-                box_w_scores = torch.cat([output["boxes"], output["scores"].unsqueeze(1)], dim=1)
-                gallery_dets.append(box_w_scores.cpu().numpy())
-
-    vis_detections(gallery_loader.dataset, gallery_dets, save_path, det_thresh=0.01)
-

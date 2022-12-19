@@ -203,11 +203,6 @@ def eval_detection(
         for j in range(num_det):
             if j in ignore_box_candidates and not tfmat[:, j].any():
                 # we have a detection in ignore region
-                # a=1
-                # box = det[j, :4]
-                # image = cv2.rectangle(image, (int(box[0]), int(box[1])), (int(box[2]), int(box[3])), [0, 0, 255])
-                # plt.imshow(image[:, :, ::-1])
-                # plt.show()
                 detections_to_ignore[gallery_idx].append(j)
                 continue
 
@@ -238,7 +233,6 @@ def eval_detection(
 
     for cam_id in count_tp_seq.keys():
         det_rate_s = count_tp_seq[cam_id] * 1.0 / count_gt_seq[cam_id]
-        # print(f"{cam_id}: recall {det_rate_s}")
 
     return det_rate, ap, detections_to_ignore
 

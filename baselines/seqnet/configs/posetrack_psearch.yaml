@@ -1,0 +1,22 @@
+OUTPUT_DIR: "./exps/exp_posetrack"
+INPUT:
+  DATASET: "PoseTrackPSearch"
+  DATA_ROOT: "data/PoseTrackPSearch/posetrack_data/"  # this folder contains the images folder and the folder with person search annotations
+  BATCH_SIZE_TRAIN: 5
+  BATCH_SIZE_TEST: 1
+  NUM_WORKERS_TRAIN: 16
+  NUM_WORKERS_TEST: 16
+SOLVER:
+  MAX_EPOCHS: 20
+  LR_DECAY_MILESTONES: [3, 8]
+MODEL:
+  LOSS:
+    LUT_SIZE: 5222
+    CQ_SIZE: 5000
+
+EVAL_USE_CACHE: False
+EVAL_PERIOD: 1
+# Evaluation with GT boxes to verify the upper bound of person search performance
+EVAL_USE_GT: False
+# Evaluation with Context Bipartite Graph Matching (CBGM) algorithm
+EVAL_USE_CBGM: True
