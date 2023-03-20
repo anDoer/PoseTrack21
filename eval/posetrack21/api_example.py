@@ -3,9 +3,10 @@ import posetrack21.api as api
 """
 obtain the evaluator class. Possible eval_types: ['pose_tracking', 'reid_tracking', 'posetrack_mot']
 """
+eval_type = 'pose_tracking'
 evaluator = api.get_api(trackers_folder='/home/group-cvg/doering/2022/PoseTrackReIDEvaluationData/dummy_pr/', 
                         gt_folder='/home/group-cvg/doering/2022/PoseTrackReIDEvaluationData/dummy_gt/', 
-                        eval_type='tracking', 
+                        eval_type=eval_type, 
                         num_parallel_cores=8,
                         use_parallel=True)
 
@@ -13,5 +14,6 @@ evaluator = api.get_api(trackers_folder='/home/group-cvg/doering/2022/PoseTrackR
 # The last element, i.e. results['HOTA'][:, -1] is the total score over all keypoints.
 results = evaluator.eval()
 
-# get average results over evaluation thresholds
-avg_results = evaluator.get_avg_results(results)
+if eval_type != 'pose_estim':
+    # get average results over evaluation thresholds
+    avg_results = evaluator.get_avg_results(results)
