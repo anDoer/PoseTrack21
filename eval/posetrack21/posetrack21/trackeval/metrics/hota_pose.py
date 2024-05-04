@@ -54,17 +54,17 @@ class HOTAeypoints(_BaseMetric):
         assert res['HOTA_TP'].shape[1] == 15 
         # Return result quickly if tracker or gt sequence is empty
         if data['num_tracker_dets'] == 0:
-            res['HOTA_FN'] = data['num_gt_joints'][None, :] * np.ones((len(self.array_labels), self.n_joints), dtype=np.float)
-            res['LocA'] = np.ones((len(self.array_labels), self.n_joints), dtype=np.float)
-            res['LocA(0)'] = np.ones((self.n_joints), dtype=np.float)
+            res['HOTA_FN'] = data['num_gt_joints'][None, :] * np.ones((len(self.array_labels), self.n_joints), dtype=np.float32)
+            res['LocA'] = np.ones((len(self.array_labels), self.n_joints), dtype=np.float32)
+            res['LocA(0)'] = np.ones((self.n_joints), dtype=np.float32)
             res = self._compute_final_fields(res, compute_avg=True)
 
             return res
 
         if data['num_gt_dets'] == 0:
-            res['HOTA_FP'] = data['num_tracker_joints'][None, :] * np.ones((len(self.array_labels), self.n_joints), dtype=np.float)
-            res['LocA'] = np.ones((len(self.array_labels), self.n_joints), dtype=np.float)
-            res['LocA(0)'] = np.ones((self.n_joints), dtype=np.float)
+            res['HOTA_FP'] = data['num_tracker_joints'][None, :] * np.ones((len(self.array_labels), self.n_joints), dtype=np.float32)
+            res['LocA'] = np.ones((len(self.array_labels), self.n_joints), dtype=np.float32)
+            res['LocA(0)'] = np.ones((self.n_joints), dtype=np.float32)
             res = self._compute_final_fields(res, compute_avg=True)
             return res
         
@@ -330,10 +330,10 @@ class HOTAeypoints(_BaseMetric):
         # we have an array for each joint
         elif metric in self.integer_array_fields:
             for j in range(result.shape[1]):
-                vals.append("{0:d}".format(np.mean(result[:, j]).astype(np.int)))
+                vals.append("{0:d}".format(np.mean(result[:, j]).astype(np.int32)))
         elif metric in self.integer_fields:
             for j in range(result.shape[0]):
-                vals.append("{0:d}".format(result[j].astype(np.int)))
+                vals.append("{0:d}".format(result[j].astype(np.int32)))
         else:
             raise TrackEvalException(f"Unknown metric {metric}")
 

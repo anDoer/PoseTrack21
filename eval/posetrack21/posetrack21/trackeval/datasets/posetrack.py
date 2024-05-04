@@ -332,7 +332,7 @@ class PoseTrack(_BaseDataset):
             for t in range(raw_data['num_timesteps']):
                 if len(data['gt_ids'][t]) > 0:
                     data['original_gt_ids'][t] = data['gt_ids'][t].copy()
-                    data['gt_ids'][t] = gt_id_map[data['gt_ids'][t]].astype(np.int)
+                    data['gt_ids'][t] = gt_id_map[data['gt_ids'][t]].astype(np.int32)
 
                     gt_dets = data['gt_dets'][t]
                     num_gt_joints += count_valid_joints(gt_dets)
@@ -344,7 +344,7 @@ class PoseTrack(_BaseDataset):
             for t in range(raw_data['num_timesteps']):
                 if len(data['tracker_ids'][t]) > 0:
                     data['original_tracker_ids'][t] = data['tracker_ids'][t].copy()
-                    data['tracker_ids'][t] = tracker_id_map[data['tracker_ids'][t]].astype(np.int)
+                    data['tracker_ids'][t] = tracker_id_map[data['tracker_ids'][t]].astype(np.int32)
                     tracker_dets = data['tracker_dets'][t]
                     num_tracker_joints += count_valid_joints(tracker_dets)
 

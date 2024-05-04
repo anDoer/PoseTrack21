@@ -31,20 +31,20 @@ class HOTA(_BaseMetric):
         # Initialise results
         res = {}
         for field in self.float_array_fields + self.integer_array_fields:
-            res[field] = np.zeros((len(self.array_labels)), dtype=np.float)
+            res[field] = np.zeros((len(self.array_labels)), dtype=np.float32)
         for field in self.float_fields:
             res[field] = 0
 
         # Return result quickly if tracker or gt sequence is empty
         if data['num_tracker_dets'] == 0:
-            res['HOTA_FN'] = data['num_gt_dets'] * np.ones((len(self.array_labels)), dtype=np.float)
-            res['LocA'] = np.ones((len(self.array_labels)), dtype=np.float)
+            res['HOTA_FN'] = data['num_gt_dets'] * np.ones((len(self.array_labels)), dtype=np.float32)
+            res['LocA'] = np.ones((len(self.array_labels)), dtype=np.float32)
             res['LocA(0)'] = 1.0
             res = self._compute_final_fields(res)
             return res
         if data['num_gt_dets'] == 0:
-            res['HOTA_FP'] = data['num_tracker_dets'] * np.ones((len(self.array_labels)), dtype=np.float)
-            res['LocA'] = np.ones((len(self.array_labels)), dtype=np.float)
+            res['HOTA_FP'] = data['num_tracker_dets'] * np.ones((len(self.array_labels)), dtype=np.float32)
+            res['LocA'] = np.ones((len(self.array_labels)), dtype=np.float32)
             res['LocA(0)'] = 1.0
             res = self._compute_final_fields(res)
             return res
@@ -343,9 +343,9 @@ class HOTA(_BaseMetric):
             vals.append("{0:1.5g}".format(100 * np.mean(result)))
         # we have an array for each joint
         elif metric in self.integer_array_fields:
-                vals.append("{0:d}".format(np.mean(result).astype(np.int)))
+                vals.append("{0:d}".format(np.mean(result).astype(np.int32)))
         elif metric in self.integer_fields:
-            vals.append("{0:d}".format(result.astype(np.int)))
+            vals.append("{0:d}".format(result.astype(np.int32)))
         else:
             raise TrackEvalException(f"Unknown metric {metric}")
 
