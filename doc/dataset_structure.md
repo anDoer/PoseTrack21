@@ -45,12 +45,16 @@ A sample annotation file in `posetrack_data` has the following format:
             "file_name": images/train/000001_bonn_train/000000.jpg, 
             "has_labeled_person": false,        # true,  if a frame contaisn annotated bounding boxes (with or without keypoints)
             "ignore_regions_y": [
-                [y11,  y12,  y13,  ...,  y1n], 
-                [y21,  y22,  y23,  ...,  y2n]
+                [y11,  y12,  y13,  ...,  y1n],  # y-coordinates of n-sided polygon
+                [y21,  y22,  y23,  ...,  y2m],
+                [...],
+                [yN1,  yN2,  yN3,  ...,  yNo],  # N polygons with possibly a different number of sides
             ],  
             "ignore_regions_x": [
-                [x11,  x12,  x13,  ...,  x1n], 
-                [x21,  x22,  x23,  ...,  x2n]
+                [x11,  x12,  x13,  ...,  x1n],  # x-coordinates of n-sided polygon
+                [x21,  x22,  x23,  ...,  x2m],
+                [...],
+                [xN1,  xN2,  xN3,  ...,  xNo],
             ] 
         }
     ], 
